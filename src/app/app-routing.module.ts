@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'grafiekVruchtgrootte', component: GrafiekVruchtgrootteComponent},
   {path: 'grafiekVruchtgroei', component: GrafiekVruchtgroeiComponent},
   {path: 'grafiekTempVocht', component: GrafiekTempVochtComponent},
-  {path: 'arduinps', component: HomeComponent}
+  {path: 'arduinos', component: HomeComponent}
 ];
 
 @NgModule({
