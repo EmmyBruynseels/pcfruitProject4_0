@@ -1,0 +1,50 @@
+<button mat-raised-button class="mr-1 ml-1" (click)="goToOverzicht()" color="accent">Overzicht</button>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Arduino</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let a of arduinos">
+        <div fxFlex fxLayout="column">
+          <p>{{a.naam}} {{a.model}}</p>
+
+        <div>
+          <button mat-raised-button class="mr-1 ml-1" (click)="goToGrafiekVruchtgrootte(a.arduinoID)" color="accent">Grafiek
+            Vruchtgrootte</button>
+          <button mat-raised-button class="mr-1 ml-1" (click)="goToGrafiekVruchtgroei(a.arduinoID)" color="accent">Grafiek
+            Vruchtgroei</button>
+          <button mat-raised-button class="mr-1 ml-1" (click)="goToGrafiekTempVocht(a.arduinoID)" color="accent">Grafiek
+            TempVocht</button>
+        </div>
+
+        <div>
+          <mat-expansion-panel >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Metingen
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list>
+              <mat-list-item *ngFor="let m of a.metingen">
+                <p mat-line>meting {{m.metingID}}</p>
+                <p mat-line>Luchttemperatuur: {{m.luchttemperatuur}} {{m.temperatuurEenheid}}</p>
+                <p mat-line>Luchtvochtigheid: {{m.luchtvochtigheid}} {{m.vochtigheidEenheid}}</p>
+                <p mat-line>VruchtgrootteAppel: {{m.vruchtgrootteAppel}} {{m.grootteEenheid}}</p>
+                <p mat-line>VruchtgroottePeer: {{m.vruchtgroottePeer}} {{m.grootteEenheid}}</p>
+                <p mat-line>Bodemspanning: {{m.bodemspanning}}</p>
+              </mat-list-item>
+            </mat-list>
+
+          </mat-expansion-panel>
+        </div>
+
+        <mat-divider></mat-divider>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

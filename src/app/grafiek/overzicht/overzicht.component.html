@@ -1,0 +1,82 @@
+ <div fxFlex fxLayout="column">
+
+  <mat-form-field>
+    <mat-label>Year</mat-label>
+    <mat-select [(value)]="selectedYear">
+      <mat-option *ngFor="let y of years" [value]="y.value" (change)="reloadData($event)">
+        {{y.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="reload()" color="accent">Reload</button>
+  <div fxFlex fxLayout="row">
+    <div>
+      <p class="mat-headline">Vruchtgrootte</p>
+      <div>
+        <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
+          [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+          [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
+
+      </div>
+    </div>
+    <div>
+      <p class="mat-headline">Vruchtgroei </p>
+      <div>
+        <canvas baseChart width="750" [datasets]="vruchtgroeiData" [labels]="vruchtgroeiLabels"
+          [options]="vruchtgroeiOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+          [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
+      </div>
+    </div>
+
+  </div>
+  <div fxFlex fxLayout="row">
+    <div>
+      <p class="mat-headline">Temperatuur Vochtigheid</p>
+      <div>
+        <canvas baseChart width="750" [datasets]="tempvochtData" [labels]="tempvochtLabels" [options]="tempvochtOptions"
+          [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [plugins]="lineChartPlugins"></canvas>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+ <!-- <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div>
+          <p class="mat-headline">Vruchtgroei </p>
+          <div>
+            <canvas baseChart width="750" [datasets]="vruchtgroeiData" [labels]="vruchtgroeiLabels"
+              [options]="vruchtgroeiOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm">
+        <div>
+          <p class="mat-headline">Vruchtgrootte</p>
+          <div>
+            <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
+              [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
+    
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div>
+          <p class="mat-headline">Vruchtgrootte</p>
+          <div>
+            <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
+              [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+              [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
