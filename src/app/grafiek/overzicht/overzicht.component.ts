@@ -137,7 +137,7 @@ export class OverzichtComponent implements OnInit {
     this._databaseService.getBodemTemp().subscribe(result => {
       this.tempvochtData[2].data = result;
     });
-  
+
     this._databaseService.getAppelGroei().subscribe(result => {
       this.vruchtgroeiData[0].data = result;
     });
@@ -154,12 +154,13 @@ export class OverzichtComponent implements OnInit {
     });
 
   }
-  reload(){
+
+  reload() {
     this.ngOnInit();
   }
   reloadData(event: any) {
-    console.log(event.target.value);
-    console.log("iets");
-    console.log(this.selectedYear);
+    // console.log(event.target.value);
+    console.log(event.source.value);
+    // console.log(this.selectedYear);
   }
 }

@@ -1,26 +1,25 @@
- <div fxFlex fxLayout="column">
+ <div fxFlex fxLayout="column" class="container-fluid">
 
-  <mat-form-field>
+  <mat-form-field class="mt-3">
     <mat-label>Year</mat-label>
-    <mat-select [(value)]="selectedYear">
-      <mat-option *ngFor="let y of years" [value]="y.value" (change)="reloadData($event)">
+    <mat-select [(value)]="selectedYear" (selectionChange)="reloadData($event)">
+      <mat-option *ngFor="let y of years" [value]="y.value" >
         {{y.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button (click)="reload()" color="accent">Reload</button>
-  <div fxFlex fxLayout="row">
-    <div>
+  <!-- <button mat-raised-button (click)="reload()" color="accent">Reload</button> -->
+  <div class="row mt-5">
+    <div class="col-lg-4 col-md-12">
       <p class="mat-headline">Vruchtgrootte</p>
       <div>
         <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
           [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
           [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
-
       </div>
     </div>
-    <div>
+    <div class="col-lg-4 col-md-12">
       <p class="mat-headline">Vruchtgroei </p>
       <div>
         <canvas baseChart width="750" [datasets]="vruchtgroeiData" [labels]="vruchtgroeiLabels"
@@ -28,10 +27,7 @@
           [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
       </div>
     </div>
-
-  </div>
-  <div fxFlex fxLayout="row">
-    <div>
+    <div class="col-lg-4 col-md-12">
       <p class="mat-headline">Temperatuur Vochtigheid</p>
       <div>
         <canvas baseChart width="750" [datasets]="tempvochtData" [labels]="tempvochtLabels" [options]="tempvochtOptions"
@@ -40,7 +36,7 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 
  <!-- <div class="container">
@@ -63,7 +59,7 @@
             <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
               [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
               [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
-    
+
           </div>
         </div>
       </div>
@@ -74,7 +70,7 @@
             <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
               [options]="vruchtgrootteOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
               [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
-    
+
           </div>
         </div>
       </div>
