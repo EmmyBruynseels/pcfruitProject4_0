@@ -10,8 +10,8 @@
   </mat-form-field>
 
   <!-- <button mat-raised-button (click)="reload()" color="accent">Reload</button> -->
-  <div class="row mt-5">
-    <div class="col-lg-4 col-md-12">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 mt-5">
       <p class="mat-headline">Vruchtgrootte</p>
       <div>
         <canvas baseChart width="750" [datasets]="vruchtgrootteData" [labels]="vruchtgrootteLabels"
@@ -19,7 +19,7 @@
           [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-4 col-md-12 mt-5">
       <p class="mat-headline">Vruchtgroei </p>
       <div>
         <canvas baseChart width="750" [datasets]="vruchtgroeiData" [labels]="vruchtgroeiLabels"
@@ -27,7 +27,7 @@
           [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-4 col-md-12 mt-5">
       <p class="mat-headline">Temperatuur Vochtigheid</p>
       <div>
         <canvas baseChart width="750" [datasets]="tempvochtData" [labels]="tempvochtLabels" [options]="tempvochtOptions"
