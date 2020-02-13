@@ -9,11 +9,11 @@ import { OverzichtComponent } from './grafiek/overzicht/overzicht.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: OverzichtComponent},
   {path: 'grafiekVruchtgrootte', component: GrafiekVruchtgrootteComponent},
   {path: 'grafiekVruchtgroei', component: GrafiekVruchtgroeiComponent},
   {path: 'grafiekTempVocht', component: GrafiekTempVochtComponent},
-  {path: 'overzicht', component: OverzichtComponent}
+  {path: 'arduinps', component: HomeComponent}
 ];
 
 @NgModule({
