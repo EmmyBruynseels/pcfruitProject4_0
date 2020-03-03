@@ -1,18 +1,25 @@
-<p class="mat-display-1">Vruchtgroei</p>
-<button mat-raised-button (click)="reload()" color="accent">Reload</button>
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="1500" height="1000"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                [plugins]="lineChartPlugins"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div class="container" fxFlex fxLayout="column">
+
+  <div fxFlex fxLayout="row" style="margin-bottom: -50px;" fxLayoutAlign="space-between center">
+    <p class="mat-display-1 mt-5">Vruchtgroei</p>
+    <mat-form-field>
+      <mat-label>Year</mat-label>
+      <mat-select [(value)]="selectedValue" (selectionChange)="reloadData($event)">
+        <mat-option *ngFor="let y of years" [value]="y.value">
+          {{y.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button class="mb-2" (click)="reload()" color="accent">Reload</button>
+  <div class="flex">
+    <div class="flex-item">
+      <div style="display: block;">
+        <canvas baseChart width="1500" height="1000" [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
     </div>
   </div>
 </div>

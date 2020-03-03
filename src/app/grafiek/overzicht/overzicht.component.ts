@@ -11,13 +11,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class OverzichtComponent implements OnInit {
 
-  years: any[] = [
-    {value: '0', viewValue: 'Geen jaar'},
-    {value: '2019', viewValue: '2019'},
-    {value: '2020', viewValue: '2020'}
-  ];
-  selectedYear : string;
-
+  selectedValue = 0;
   public vruchtgroeiData: ChartDataSets[] = [
     { data: [], label: 'Appel' },
     { data: [], label: 'Peer' },
@@ -34,8 +28,8 @@ export class OverzichtComponent implements OnInit {
         }
       ]
     },
-     annotation: {
-     },
+    annotation: {
+    },
   };
 
   public vruchtgrootteData: ChartDataSets[] = [
@@ -54,8 +48,8 @@ export class OverzichtComponent implements OnInit {
         }
       ]
     },
-     annotation: {
-     },
+    annotation: {
+    },
   };
 
   public tempvochtData: ChartDataSets[] = [
@@ -73,19 +67,19 @@ export class OverzichtComponent implements OnInit {
           id: 'y-axis-0',
           position: 'left',
         },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          }
-        }
+        // {
+        //   id: 'y-axis-1',
+        //   position: 'right',
+        //   gridLines: {
+        //     color: 'rgba(255,0,0,0.3)',
+        //   },
+        //   ticks: {
+        //     fontColor: 'red',
+        //   }
+        // }
       ]
     },
-     annotation: {
+    annotation: {
     },
   };
 
@@ -98,18 +92,27 @@ export class OverzichtComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
+    // { // dark grey
+    //   backgroundColor: 'rgba(77,83,96,0.2)',
+    //   borderColor: 'rgba(77,83,96,1)',
+    //   pointBackgroundColor: 'rgba(77,83,96,1)',
+    //   pointBorderColor: '#fff',
+    //   pointHoverBackgroundColor: '#fff',
+    //   pointHoverBorderColor: 'rgba(77,83,96,1)'
+    // },
+    { // blue
+      backgroundColor: 'rgba(54, 162, 235,0.2)',
+      borderColor: 'rgba(54, 162, 235,1)',
+      pointBackgroundColor: 'rgba(54, 162, 235,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
+      pointHoverBorderColor: 'rgba(54, 162, 235,1)'
+
     },
     { // red
       backgroundColor: 'rgba(255,0,0,0.3)',
       borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'red',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
@@ -119,9 +122,20 @@ export class OverzichtComponent implements OnInit {
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
+  years: any[] = [];
+
   constructor(private _databaseService: DatabaseService) { }
 
   ngOnInit() {
+
+    this._databaseService.getJaren().subscribe(result => {
+      var jaren = result;
+      this.years = [];
+      this.years.push({ value: 0, viewValue: 'Meest recente data' });
+      for (let i = 0; i < jaren.length; i++) {
+        this.years.push({ value: jaren[i], viewValue: jaren[i] });
+      }
+    });
     this._databaseService.getDatums().subscribe(result => {
       this.tempvochtLabels = result;
       this.vruchtgroeiLabels = result;
@@ -159,8 +173,9 @@ export class OverzichtComponent implements OnInit {
     this.ngOnInit();
   }
   reloadData(event: any) {
-    // console.log(event.target.value);
-    console.log(event.source.value);
-    // console.log(this.selectedYear);
+    //console.log(event.source.value);
+    this._databaseService.jaar.next(event.source.value);
+    this.selectedValue = event.source.value;
+    this.ngOnInit();
   }
 }

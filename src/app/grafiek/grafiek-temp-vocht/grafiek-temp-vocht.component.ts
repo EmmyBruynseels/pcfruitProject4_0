@@ -11,6 +11,9 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class GrafiekTempVochtComponent implements OnInit {
 
+  selectedValue = 0;
+  years: any[] = [];
+
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Temperatuur' },
     { data: [], label: 'Vochtigheid' },
@@ -27,16 +30,16 @@ export class GrafiekTempVochtComponent implements OnInit {
           id: 'y-axis-0',
           position: 'left',
         },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          }
-        }
+        // {
+        //   id: 'y-axis-1',
+        //   position: 'right',
+        //   gridLines: {
+        //     color: 'rgba(255,0,0,0.3)',
+        //   },
+        //   ticks: {
+        //     fontColor: 'red',
+        //   }
+        // }
       ]
     },
      annotation: {
@@ -66,13 +69,14 @@ export class GrafiekTempVochtComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
+    { // blue
+      backgroundColor: 'rgba(54, 162, 235,0.2)',
+      borderColor: 'rgba(54, 162, 235,1)',
+      pointBackgroundColor: 'rgba(54, 162, 235,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
+      pointHoverBorderColor: 'rgba(54, 162, 235,1)'
+      
     },
     { // red
       backgroundColor: 'rgba(255,0,0,0.3)',
@@ -104,8 +108,22 @@ export class GrafiekTempVochtComponent implements OnInit {
     this._databaseService.getDatumsByArduino().subscribe(result => {
       this.lineChartLabels = result;
     });
+    this._databaseService.getJaren().subscribe(result => {
+      var jaren = result;
+      this.years = [];
+      this.years.push({value:0, viewValue:'Meest recente data'});
+      for (let i = 0; i < jaren.length; i++) {
+        this.years.push({ value: jaren[i], viewValue: jaren[i] });
+      }
+    });
   }
-  reload(){
+ reload() {
+    this.ngOnInit();
+  }
+  reloadData(event: any) {
+    //console.log(event.source.value);
+    this._databaseService.jaar.next(event.source.value);
+    this.selectedValue = event.source.value;
     this.ngOnInit();
   }
 
